@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect x="0.75" y="0.75" width="30.5" height="30.5" fill="#173F2A" stroke="#D9A441" stroke-width="1.5" rx="3"/>
+  <text
+    x="16" y="22"
+    text-anchor="middle"
+    font-family="Arial Black, Arial, sans-serif"
+    font-weight="900"
+    font-size="13"
+    fill="#FFF3D6"
+    letter-spacing="0.5"
+  >WB</text>
+</svg>
