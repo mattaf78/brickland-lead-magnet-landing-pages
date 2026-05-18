@@ -210,7 +210,7 @@ export const ultraProcessedFoodTrap: LeadMagnetConfig = {
     nameLabel: "Your name",
     emailLabel: "Your email address",
     consentLabel:
-      "I agree to receive the free guide and occasional related emails. I can unsubscribe at any time.",
+      "I agree to receive the free guide and occasional emails from Vital Living Ltd / The Wellness Brickdown, including educational content, free resources, updates, and promotional emails about courses, programmes, apps, services and related offers. I understand I can unsubscribe at any time.",
     submitLabel: "Download the Free Guide",
     successEyebrow: "Field report dispatched",
     successHeading: "Check your inbox.",

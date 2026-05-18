@@ -99,7 +99,7 @@ export function OptInForm({ form, privacyLine, privacyPolicyText, privacyPolicyU
           // TODO: when an email provider is connected, add `required`
           className="mt-1 h-5 w-5 shrink-0 accent-brand-red"
         />
-        <span>{form.consentLabel}</span>
+        <span className="min-w-0 break-words">{form.consentLabel}</span>
       </label>
       {error && (
         <p className="font-mono text-xs uppercase tracking-wider text-brand-red">{error}</p>
