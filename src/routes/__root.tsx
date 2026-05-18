@@ -72,14 +72,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "The Wellness Brickdown" },
+      { name: "description", content: "Satirical field reports exposing the systems shaping modern health, food, energy and behaviour." },
+      { name: "author", content: "The Wellness Brickdown" },
+      { property: "og:title", content: "The Wellness Brickdown" },
+      { property: "og:description", content: "Satirical field reports from Brickland exposing the systems shaping modern health, food, energy and behaviour." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

@@ -10,6 +10,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "The Food System Isn't Broken. It's Built This Way." },
       { property: "og:description", content: config.hero.subtitle },
       { property: "og:image", content: config.hero.image.src },
+      { property: "og:site_name", content: "The Wellness Brickdown" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: config.hero.image.src },
