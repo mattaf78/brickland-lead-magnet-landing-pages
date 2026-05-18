@@ -1,26 +1,37 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { LeadMagnetPage } from "@/components/leadMagnet/LeadMagnetPage";
+import { ultraProcessedFoodTrap as config } from "@/content/leadMagnets/ultraProcessedFoodTrap";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "The Ultra-Processed Food Trap — Free Brickland Field Guide" },
+      { name: "description", content: config.hero.subtitle },
+      { property: "og:title", content: "The Food System Isn't Broken. It's Built This Way." },
+      { property: "og:description", content: config.hero.subtitle },
+      { property: "og:image", content: config.hero.image.src },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: config.hero.image.src },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: config.faq.map((f) => ({
+            "@type": "Question",
+            name: f.question,
+            acceptedAnswer: { "@type": "Answer", text: f.answer },
+          })),
+        }),
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return <LeadMagnetPage config={config} />;
 }
