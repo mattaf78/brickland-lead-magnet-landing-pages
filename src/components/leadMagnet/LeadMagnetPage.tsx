@@ -21,6 +21,8 @@ export function LeadMagnetPage({ config }: { config: LeadMagnetConfig }) {
         brandName={config.brandName}
         fieldReportLabel={config.fieldReportLabel}
         leadMagnetId={config.leadMagnetId}
+        logoMonogram={config.navbar?.logoMonogram}
+        ctaLabel={config.navbar?.ctaLabel}
       />
       <main>
         <Hero config={config} />

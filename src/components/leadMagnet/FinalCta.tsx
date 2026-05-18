@@ -31,6 +31,7 @@ export function FinalCta({ config }: { config: LeadMagnetConfig }) {
                   form={config.form}
                   privacyLine={config.hero.privacyLine}
                   privacyPolicyText={config.hero.privacyPolicyText}
+                  privacyPolicyUrl={config.privacyPolicyUrl}
                 />
               </div>
             </div>

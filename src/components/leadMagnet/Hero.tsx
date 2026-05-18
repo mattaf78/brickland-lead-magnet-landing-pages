@@ -9,7 +9,7 @@ export function Hero({ config }: { config: LeadMagnetConfig }) {
         <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_1fr]">
           <div className="order-1">
             <FieldReportTag>{config.hero.eyebrow}</FieldReportTag>
-            <h1 className="mt-4 font-display text-4xl uppercase leading-[0.95] text-brand-green sm:text-5xl md:text-6xl">
+            <h1 className="mt-4 font-display text-3xl uppercase leading-tight sm:leading-[0.95] text-brand-green sm:text-5xl md:text-6xl">
               {config.hero.titleLine1}
               <br />
               <span className="text-brand-red">{config.hero.titleHighlight}</span>
@@ -22,12 +22,13 @@ export function Hero({ config }: { config: LeadMagnetConfig }) {
               <div className="absolute -top-3 left-4 bg-brand-red px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-panel-cream">
                 Free guide
               </div>
-              <div className="p-5 sm:p-6">
+              <div className="p-4 sm:p-6">
                 <OptInForm
                   formId="hero"
                   form={config.form}
                   privacyLine={config.hero.privacyLine}
                   privacyPolicyText={config.hero.privacyPolicyText}
+                  privacyPolicyUrl={config.privacyPolicyUrl}
                 />
               </div>
             </div>

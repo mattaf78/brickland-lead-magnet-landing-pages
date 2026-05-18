@@ -7,6 +7,23 @@ export type LeadMagnetConfig = {
   brandName: string;
   countyName: string;
 
+  navbar?: {
+    logoMonogram?: string;
+    ctaLabel?: string;
+  };
+
+  sectionLabels?: {
+    problem?: string;
+    mechanism?: string;
+    discover?: string;
+    whyItMatters?: string;
+    about?: string;
+    preview?: string;
+    faq?: { eyebrow?: string; heading?: string };
+  };
+
+  privacyPolicyUrl?: string;
+
   hero: {
     eyebrow: string;
     titleLine1: string;
@@ -55,5 +72,8 @@ export type LeadMagnetConfig = {
     emailLabel: string;
     consentLabel: string;
     submitLabel: string;
+    successEyebrow?: string;
+    successHeading?: string;
+    successBody?: string;
   };
 };

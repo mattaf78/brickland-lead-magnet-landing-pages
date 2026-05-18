@@ -12,6 +12,23 @@ export const ultraProcessedFoodTrap: LeadMagnetConfig = {
   brandName: "The Wellness Brickdown",
   countyName: "Craving County",
 
+  navbar: {
+    logoMonogram: "WB",
+    ctaLabel: "Get the Guide",
+  },
+
+  sectionLabels: {
+    problem: "Case File 01",
+    mechanism: "Hidden Mechanism",
+    discover: "Evidence Panel",
+    whyItMatters: "Field Observations",
+    about: "About the Investigators",
+    preview: "Inside the Report",
+    faq: { eyebrow: "Frequently Asked", heading: "Questions from the Field" },
+  },
+
+  privacyPolicyUrl: "#",
+
   hero: {
     eyebrow: "Free Guide — Brickland Field Report",
     titleLine1: "The Food System Isn't Broken.",
@@ -195,5 +212,9 @@ export const ultraProcessedFoodTrap: LeadMagnetConfig = {
     consentLabel:
       "I agree to receive the free guide and occasional related emails. I can unsubscribe at any time.",
     submitLabel: "Download the Free Guide",
+    successEyebrow: "Field report dispatched",
+    successHeading: "Check your inbox.",
+    successBody:
+      "Your free Brickland field guide is on its way. If it doesn’t arrive within a few minutes, check spam or promotions.",
   },
 };

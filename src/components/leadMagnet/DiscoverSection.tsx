@@ -5,7 +5,7 @@ export function DiscoverSection({ config }: { config: LeadMagnetConfig }) {
   return (
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-5xl px-4">
-        <FieldReportTag>Evidence Panel</FieldReportTag>
+        <FieldReportTag>{config.sectionLabels?.discover ?? "Evidence Panel"}</FieldReportTag>
         <h2 className="mt-3 font-display text-3xl uppercase leading-tight text-brand-green sm:text-4xl">
           {config.discover.title}
         </h2>

@@ -5,7 +5,7 @@ export function AboutSection({ config }: { config: LeadMagnetConfig }) {
   return (
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-4xl px-4">
-        <FieldReportTag>About the Investigators</FieldReportTag>
+        <FieldReportTag>{config.sectionLabels?.about ?? "About the Investigators"}</FieldReportTag>
         <h2 className="mt-3 font-display text-3xl uppercase leading-tight text-brand-green sm:text-4xl">
           {config.about.title}
         </h2>

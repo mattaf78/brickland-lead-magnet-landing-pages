@@ -11,9 +11,9 @@ export function FaqSection({ config }: { config: LeadMagnetConfig }) {
   return (
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-4xl px-4">
-        <FieldReportTag>Frequently Asked</FieldReportTag>
+        <FieldReportTag>{config.sectionLabels?.faq?.eyebrow ?? "Frequently Asked"}</FieldReportTag>
         <h2 className="mt-3 font-display text-3xl uppercase leading-tight text-brand-green sm:text-4xl">
-          Questions from the Field
+          {config.sectionLabels?.faq?.heading ?? "Questions from the Field"}
         </h2>
         <div className="mt-8 border-2 border-brand-green bg-panel-cream">
           <Accordion type="single" collapsible className="divide-y divide-brand-brown/30">

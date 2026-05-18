@@ -5,7 +5,7 @@ export function PreviewSection({ config }: { config: LeadMagnetConfig }) {
   return (
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4">
-        <FieldReportTag>Inside the Report</FieldReportTag>
+        <FieldReportTag>{config.sectionLabels?.preview ?? "Inside the Report"}</FieldReportTag>
         <h2 className="mt-3 max-w-3xl font-display text-3xl uppercase leading-tight text-brand-green sm:text-4xl">
           {config.preview.title}
         </h2>

@@ -18,11 +18,12 @@ type Props = {
   form: LeadMagnetConfig["form"];
   privacyLine: string;
   privacyPolicyText: string;
+  privacyPolicyUrl?: string;
   variant?: "cream" | "green";
   formId: string;
 };
 
-export function OptInForm({ form, privacyLine, privacyPolicyText, variant = "cream", formId }: Props) {
+export function OptInForm({ form, privacyLine, privacyPolicyText, privacyPolicyUrl, variant = "cream", formId }: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -53,10 +54,10 @@ export function OptInForm({ form, privacyLine, privacyPolicyText, variant = "cre
   if (submitted) {
     return (
       <div className={`border-2 border-brand-green ${onGreen ? "bg-panel-cream text-foreground" : "bg-brand-green text-panel-cream"} p-6`}>
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em]">Field report dispatched</p>
-        <p className="mt-2 font-display text-2xl uppercase">Check your inbox.</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em]">{form.successEyebrow ?? "Field report dispatched"}</p>
+        <p className="mt-2 font-display text-2xl uppercase">{form.successHeading ?? "Check your inbox."}</p>
         <p className="mt-2 text-sm opacity-90">
-          Your free Brickland field guide is on its way. If it doesn&rsquo;t arrive within a few minutes, check spam or promotions.
+          {form.successBody ?? "Your free Brickland field guide is on its way. If it doesn’t arrive within a few minutes, check spam or promotions."}
         </p>
       </div>
     );
@@ -111,7 +112,7 @@ export function OptInForm({ form, privacyLine, privacyPolicyText, variant = "cre
       </button>
       <p className={`font-mono text-[11px] uppercase tracking-[0.16em] ${helperColor}`}>{privacyLine}</p>
       <p className={`text-[12px] ${helperColor}`}>
-        <a href="#" className="underline underline-offset-2">{privacyPolicyText}</a>
+        <a href={privacyPolicyUrl ?? "#"} className="underline underline-offset-2">{privacyPolicyText}</a>
       </p>
     </form>
   );

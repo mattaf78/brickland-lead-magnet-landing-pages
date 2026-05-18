@@ -6,7 +6,7 @@ export function WhyItMattersSection({ config }: { config: LeadMagnetConfig }) {
   return (
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4">
-        <FieldReportTag>Field Observations</FieldReportTag>
+        <FieldReportTag>{config.sectionLabels?.whyItMatters ?? "Field Observations"}</FieldReportTag>
         <h2 className="mt-3 max-w-3xl font-display text-3xl uppercase leading-tight text-brand-green sm:text-4xl">
           {config.whyItMatters.title}
         </h2>
