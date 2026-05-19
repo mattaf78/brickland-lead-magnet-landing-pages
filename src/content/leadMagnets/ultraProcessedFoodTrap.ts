@@ -27,7 +27,7 @@ export const ultraProcessedFoodTrap: LeadMagnetConfig = {
     faq: { eyebrow: "Frequently Asked", heading: "Questions from the Field" },
   },
 
-  privacyPolicyUrl: "#",
+  privacyPolicyUrl: "/privacy",
 
   hero: {
     eyebrow: "Free Guide — Brickland Field Report",
