@@ -76,9 +76,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Satirical field reports exposing the systems shaping modern health, food, energy and behaviour." },
       { name: "author", content: "The Wellness Brickdown" },
       { property: "og:title", content: "The Wellness Brickdown" },
-      { property: "og:description", content: "Satirical field reports from Brickland exposing the systems shaping modern health, food, energy and behaviour." },
+      { property: "og:description", content: "Satirical field reports exposing the systems shaping modern health, food, energy and behaviour." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "The Wellness Brickdown" },
+      { name: "twitter:description", content: "Satirical field reports exposing the systems shaping modern health, food, energy and behaviour." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fa4ec5be-9fd3-4f80-be89-5911eb4382c5/id-preview-1fc692ac--75b99870-b406-4af1-84f7-1ecc08ecb07c.lovable.app-1779198858618.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fa4ec5be-9fd3-4f80-be89-5911eb4382c5/id-preview-1fc692ac--75b99870-b406-4af1-84f7-1ecc08ecb07c.lovable.app-1779198858618.png" },
     ],
     links: [
       {
