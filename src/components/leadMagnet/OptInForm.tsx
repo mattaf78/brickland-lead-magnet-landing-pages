@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import type { LeadMagnetConfig } from "@/content/leadMagnets/types";
+import { subscribeToList } from "@/lib/subscribe";
 
 /*
  * LEAD MAGNET INTEGRATION
@@ -29,6 +30,7 @@ export function OptInForm({ form, privacyLine, privacyPolicyText, privacyPolicyU
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const onGreen = variant === "green";
   const labelColor = onGreen ? "text-panel-cream" : "text-brand-green";
@@ -36,7 +38,7 @@ export function OptInForm({ form, privacyLine, privacyPolicyText, privacyPolicyU
     "w-full min-h-[48px] border-2 border-brand-green bg-panel-cream px-3 py-2 text-base text-foreground placeholder:text-brand-brown/60 focus:outline-none focus:ring-2 focus:ring-brand-red";
   const helperColor = onGreen ? "text-panel-cream/80" : "text-brand-brown";
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     if (!name.trim() || !email.trim()) {
@@ -47,8 +49,19 @@ export function OptInForm({ form, privacyLine, privacyPolicyText, privacyPolicyU
       setError("Please enter a valid email address.");
       return;
     }
-    // TODO: integrate with email provider — see top of file
-    setSubmitted(true);
+    if (!consent) {
+      setError("Please tick the consent checkbox to continue.");
+      return;
+    }
+    setLoading(true);
+    try {
+      await subscribeToList({ data: { name: name.trim(), email: email.trim(), consent: true, leadMagnetId: formId } });
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again or email info@vitalliving.co.uk.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {
@@ -96,7 +109,7 @@ export function OptInForm({ form, privacyLine, privacyPolicyText, privacyPolicyU
           type="checkbox"
           checked={consent}
           onChange={(e) => setConsent(e.target.checked)}
-          // TODO: when an email provider is connected, add `required`
+          required
           className="mt-1 h-5 w-5 shrink-0 accent-brand-red"
         />
         <span className="min-w-0 break-words">{form.consentLabel}</span>
@@ -106,9 +119,10 @@ export function OptInForm({ form, privacyLine, privacyPolicyText, privacyPolicyU
       )}
       <button
         type="submit"
-        className="inline-flex w-full min-h-[52px] items-center justify-center bg-brand-red px-6 font-display text-base uppercase tracking-wider text-panel-cream shadow-[3px_3px_0_0_var(--brand-green)] transition-transform hover:-translate-y-0.5"
+        disabled={loading}
+        className="inline-flex w-full min-h-[52px] items-center justify-center bg-brand-red px-6 font-display text-base uppercase tracking-wider text-panel-cream shadow-[3px_3px_0_0_var(--brand-green)] transition-transform hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-y-0"
       >
-        {form.submitLabel}
+        {loading ? "Sending…" : form.submitLabel}
       </button>
       <p className={`font-mono text-[11px] uppercase tracking-[0.16em] ${helperColor}`}>{privacyLine}</p>
       <p className={`text-[12px] ${helperColor}`}>
