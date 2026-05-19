@@ -10,7 +10,7 @@ const subscribeSchema = z.object({
   leadMagnetId: z.string().min(1),
 });
 
-const SYSTEME_TAG_ID = 2017456;
+const SYSTEME_TAG_ID = 2018014; // LP001TheyKnew — production tag
 const SYSTEME_BASE = "https://api.systeme.io/api";
 
 function extractId(parsed: unknown): number | undefined {
