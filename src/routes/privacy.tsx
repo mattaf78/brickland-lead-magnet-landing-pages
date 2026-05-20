@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
+
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
@@ -31,16 +32,11 @@ function Privacy() {
         </Link>
       </header>
 
-      <div className="bg-accent/30 border-b border-accent px-6 py-3 text-center">
-        <p className="font-mono text-xs text-foreground">
-          <strong>DRAFT NOTICE —</strong> This privacy policy has not yet been reviewed by a legal professional. Do not publish publicly without obtaining legal review first.
-        </p>
-      </div>
 
       <main className="mx-auto max-w-2xl px-6 py-12">
         <h1 className="text-4xl mb-1">Privacy Policy</h1>
         <p className="font-mono text-xs text-muted-foreground mb-10 tracking-wider uppercase">
-          The Wellness Brickdown — Last updated [date]
+          The Wellness Brickdown — Last updated 20 May 2026
         </p>
 
         <Section heading="1. Who We Are">
@@ -86,10 +82,11 @@ function Privacy() {
         <Section heading="3. Why We Collect It">
           <p>We collect your name and email address in order to:</p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li>Send you the free guide you requested</li>
+            <li>Deliver the free BrickBrief guide you requested (campaign LP001TheyKnew)</li>
+            <li>Send you educational email content related to health, food, energy and behaviour</li>
             <li>
-              Occasionally send you related educational content and updates from The Wellness
-              Brickdown
+              Occasionally promote relevant courses, programmes, apps and other information-based
+              content from Vital Living Ltd / The Wellness Brickdown
             </li>
           </ul>
           <p className="mt-3">
@@ -141,40 +138,50 @@ function Privacy() {
         </Section>
 
         <Section heading="6. Cookies and Analytics">
-          <Placeholder>
-            Describe what cookies or analytics tools are used on this site. If no analytics are in
-            use, state that clearly. If a tool such as Fathom, Plausible or Google Analytics is
-            used, name it and link to its privacy policy. Update before launch.
-          </Placeholder>
           <p>
-            At present, this website does not use third-party tracking or analytics cookies beyond
-            any that may be set automatically by the hosting or content-delivery infrastructure.
+            This site currently uses only the essential functionality required to operate the
+            sign-up form. We do not intentionally use non-essential analytics or tracking cookies,
+            and we have not installed third-party analytics tools such as Google Analytics, Meta
+            Pixel or similar services.
+          </p>
+          <p className="mt-3">
+            Your hosting or content-delivery infrastructure may set limited technical cookies as
+            part of normal operation; these are not used to track your behaviour or identify you
+            personally.
           </p>
         </Section>
 
         <Section heading="7. Third-Party Email Provider">
-          <Placeholder>
-            Insert the name of the email service provider used (for example: ConvertKit, Mailchimp,
-            Kit). Include a link to their privacy policy and confirm that a data-processing
-            agreement is in place. Update before launch.
-          </Placeholder>
           <p>
-            Your name and email address are stored with our email service provider, who processes
-            your data on our behalf. They operate in accordance with their own privacy policy and
-            applicable data-protection legislation.
+            We use <strong>Systeme.io</strong> as our email and marketing platform. When you
+            submit the sign-up form, your name and email address are transmitted to and stored by
+            Systeme.io, who process your data on our behalf in accordance with their privacy policy
+            and applicable data-protection legislation.
+          </p>
+          <p className="mt-3">
+            The free guide is delivered via a Systeme.io campaign email. All subsequent emails also
+            come through Systeme.io and include an unsubscribe link you can use at any time.
           </p>
         </Section>
 
         <Section heading="8. Data Retention">
-          <Placeholder>
-            Specify how long personal data is retained — for example: "We retain your data for as
-            long as you remain subscribed. If you unsubscribe, we retain only the minimum
-            information necessary to honour your unsubscribe request." Confirm retention practices
-            with your email provider before launch.
-          </Placeholder>
           <p>
-            We retain your personal data for as long as necessary to fulfil the purposes described
-            in this policy or as required by applicable law.
+            We retain your personal data for as long as you remain subscribed to our email list.
+            If you unsubscribe or request deletion, we will remove your details from our active
+            list promptly. We may retain a minimal suppression record (your email address only) to
+            honour your unsubscribe request and prevent accidental re-subscription.
+          </p>
+          <p className="mt-3">
+            We may also retain records where required by law or for legitimate administrative
+            purposes (for example, accounting or legal obligations). To request deletion of your
+            data, please contact us at{" "}
+            <a
+              href="mailto:info@vitalliving.co.uk"
+              className="underline underline-offset-2 hover:text-foreground transition-colors"
+            >
+              info@vitalliving.co.uk
+            </a>
+            .
           </p>
         </Section>
 
@@ -237,14 +244,5 @@ function Section({ heading, children }: { heading: string; children: ReactNode }
       <h2 className="text-xl mb-3 pb-1 border-b border-border">{heading}</h2>
       <div className="text-sm leading-relaxed space-y-0">{children}</div>
     </section>
-  );
-}
-
-function Placeholder({ children }: { children: ReactNode }) {
-  return (
-    <div className="my-3 rounded border border-accent bg-accent/20 px-4 py-3 font-mono text-xs text-foreground/70">
-      <strong className="text-foreground block mb-1">[ PLACEHOLDER — review before launch ]</strong>
-      {children}
-    </div>
   );
 }
