@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 const subscribeSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -10,8 +11,20 @@ const subscribeSchema = z.object({
   leadMagnetId: z.string().min(1),
 });
 
-const SYSTEME_TAG_ID = 2018014; // LP001TheyKnew — production tag
+const DEFAULT_SYSTEME_TAG_ID = 2018014; // LP001TheyKnew — production tag fallback
 const SYSTEME_BASE = "https://api.systeme.io/api";
+
+async function resolveTagId(leadMagnetId: string): Promise<number> {
+  // Look up tag in lead_magnet_pages by config->>'leadMagnetId' or slug match
+  const { data } = await supabaseAdmin
+    .from("lead_magnet_pages")
+    .select("systeme_tag_id, config")
+    .or(`slug.eq.${leadMagnetId},config->>leadMagnetId.eq.${leadMagnetId}`)
+    .limit(1)
+    .maybeSingle();
+  if (data?.systeme_tag_id) return data.systeme_tag_id;
+  return DEFAULT_SYSTEME_TAG_ID;
+}
 
 function extractId(parsed: unknown): number | undefined {
   if (parsed == null || typeof parsed !== "object") return undefined;
@@ -46,6 +59,8 @@ export const subscribeToList = createServerFn({ method: "POST" })
     if (!apiKey) {
       throw new Error("SYSTEME_API_KEY is not configured");
     }
+
+    const tagId = await resolveTagId(data.leadMagnetId);
 
     const headers = {
       "X-API-Key": apiKey,
@@ -91,7 +106,7 @@ export const subscribeToList = createServerFn({ method: "POST" })
     const tagRes = await fetch(`${SYSTEME_BASE}/contacts/${contactId}/tags`, {
       method: "POST",
       headers,
-      body: JSON.stringify({ tagId: SYSTEME_TAG_ID }),
+      body: JSON.stringify({ tagId }),
     });
 
     if (!tagRes.ok && tagRes.status !== 409 && tagRes.status !== 422) {

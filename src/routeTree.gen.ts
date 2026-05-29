@@ -10,24 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as YourvoiceRouteImport } from './routes/yourvoice'
-import { Route as Thetruth2RouteImport } from './routes/thetruth2'
-import { Route as ThetruthRouteImport } from './routes/thetruth'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as PageSlugRouteImport } from './routes/$pageSlug'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminSlugRouteImport } from './routes/admin.$slug'
 
 const YourvoiceRoute = YourvoiceRouteImport.update({
   id: '/yourvoice',
   path: '/yourvoice',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Thetruth2Route = Thetruth2RouteImport.update({
-  id: '/thetruth2',
-  path: '/thetruth2',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ThetruthRoute = ThetruthRouteImport.update({
-  id: '/thetruth',
-  path: '/thetruth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -35,47 +27,87 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PageSlugRoute = PageSlugRouteImport.update({
+  id: '/$pageSlug',
+  path: '/$pageSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSlugRoute = AdminSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$pageSlug': typeof PageSlugRoute
+  '/admin': typeof AdminRouteWithChildren
   '/privacy': typeof PrivacyRoute
-  '/thetruth': typeof ThetruthRoute
-  '/thetruth2': typeof Thetruth2Route
   '/yourvoice': typeof YourvoiceRoute
+  '/admin/$slug': typeof AdminSlugRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$pageSlug': typeof PageSlugRoute
   '/privacy': typeof PrivacyRoute
-  '/thetruth': typeof ThetruthRoute
-  '/thetruth2': typeof Thetruth2Route
   '/yourvoice': typeof YourvoiceRoute
+  '/admin/$slug': typeof AdminSlugRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$pageSlug': typeof PageSlugRoute
+  '/admin': typeof AdminRouteWithChildren
   '/privacy': typeof PrivacyRoute
-  '/thetruth': typeof ThetruthRoute
-  '/thetruth2': typeof Thetruth2Route
   '/yourvoice': typeof YourvoiceRoute
+  '/admin/$slug': typeof AdminSlugRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/privacy' | '/thetruth' | '/thetruth2' | '/yourvoice'
+  fullPaths:
+    | '/'
+    | '/$pageSlug'
+    | '/admin'
+    | '/privacy'
+    | '/yourvoice'
+    | '/admin/$slug'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/privacy' | '/thetruth' | '/thetruth2' | '/yourvoice'
-  id: '__root__' | '/' | '/privacy' | '/thetruth' | '/thetruth2' | '/yourvoice'
+  to: '/' | '/$pageSlug' | '/privacy' | '/yourvoice' | '/admin/$slug' | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/$pageSlug'
+    | '/admin'
+    | '/privacy'
+    | '/yourvoice'
+    | '/admin/$slug'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PageSlugRoute: typeof PageSlugRoute
+  AdminRoute: typeof AdminRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
-  ThetruthRoute: typeof ThetruthRoute
-  Thetruth2Route: typeof Thetruth2Route
   YourvoiceRoute: typeof YourvoiceRoute
 }
 
@@ -88,25 +120,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof YourvoiceRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/thetruth2': {
-      id: '/thetruth2'
-      path: '/thetruth2'
-      fullPath: '/thetruth2'
-      preLoaderRoute: typeof Thetruth2RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/thetruth': {
-      id: '/thetruth'
-      path: '/thetruth'
-      fullPath: '/thetruth'
-      preLoaderRoute: typeof ThetruthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$pageSlug': {
+      id: '/$pageSlug'
+      path: '/$pageSlug'
+      fullPath: '/$pageSlug'
+      preLoaderRoute: typeof PageSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -116,14 +148,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/$slug': {
+      id: '/admin/$slug'
+      path: '/$slug'
+      fullPath: '/admin/$slug'
+      preLoaderRoute: typeof AdminSlugRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminSlugRoute: typeof AdminSlugRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminSlugRoute: AdminSlugRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PageSlugRoute: PageSlugRoute,
+  AdminRoute: AdminRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
-  ThetruthRoute: ThetruthRoute,
-  Thetruth2Route: Thetruth2Route,
   YourvoiceRoute: YourvoiceRoute,
 }
 export const routeTree = rootRouteImport
