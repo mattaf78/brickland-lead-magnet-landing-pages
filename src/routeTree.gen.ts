@@ -10,7 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as YourvoiceRouteImport } from './routes/yourvoice'
-import { Route as ThetruthrouteImport } from './routes/thetruth'
+import { Route as ThetruthRouteImport } from './routes/thetruth'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -19,7 +19,7 @@ const YourvoiceRoute = YourvoiceRouteImport.update({
   path: '/yourvoice',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ThetruthrouteRoute = ThetruthrouteImport.update({
+const ThetruthRoute = ThetruthRouteImport.update({
   id: '/thetruth',
   path: '/thetruth',
   getParentRoute: () => rootRouteImport,
@@ -38,20 +38,20 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
-  '/thetruth': typeof ThetruthrouteRoute
+  '/thetruth': typeof ThetruthRoute
   '/yourvoice': typeof YourvoiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
-  '/thetruth': typeof ThetruthrouteRoute
+  '/thetruth': typeof ThetruthRoute
   '/yourvoice': typeof YourvoiceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
-  '/thetruth': typeof ThetruthrouteRoute
+  '/thetruth': typeof ThetruthRoute
   '/yourvoice': typeof YourvoiceRoute
 }
 export interface FileRouteTypes {
@@ -65,7 +65,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PrivacyRoute: typeof PrivacyRoute
-  ThetruthrouteRoute: typeof ThetruthrouteRoute
+  ThetruthRoute: typeof ThetruthRoute
   YourvoiceRoute: typeof YourvoiceRoute
 }
 
@@ -82,7 +82,7 @@ declare module '@tanstack/react-router' {
       id: '/thetruth'
       path: '/thetruth'
       fullPath: '/thetruth'
-      preLoaderRoute: typeof ThetruthrouteImport
+      preLoaderRoute: typeof ThetruthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -105,7 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PrivacyRoute: PrivacyRoute,
-  ThetruthrouteRoute: ThetruthrouteRoute,
+  ThetruthRoute: ThetruthRoute,
   YourvoiceRoute: YourvoiceRoute,
 }
 export const routeTree = rootRouteImport
