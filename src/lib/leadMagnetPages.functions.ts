@@ -88,7 +88,7 @@ export const updatePage = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
-    const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
+    const patch: Record<string, any> = { updated_at: new Date().toISOString() };
     if (data.title !== undefined) patch.title = data.title;
     if (data.slug !== undefined) patch.slug = data.slug;
     if (data.config !== undefined) patch.config = data.config;
@@ -96,7 +96,7 @@ export const updatePage = createServerFn({ method: "POST" })
     if (data.published !== undefined) patch.published = data.published;
     const { error } = await supabaseAdmin
       .from("lead_magnet_pages")
-      .update(patch)
+      .update(patch as any)
       .eq("id", data.id);
     if (error) throw new Error(error.message);
     return { ok: true as const };
@@ -116,7 +116,7 @@ export const createPage = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
-    let config: unknown = {};
+    let config: any = {};
     let systeme_tag_id: number | null = null;
     if (data.fromSlug) {
       const { data: src, error: srcErr } = await supabaseAdmin
@@ -136,7 +136,7 @@ export const createPage = createServerFn({ method: "POST" })
       config,
       systeme_tag_id,
       published: false,
-    });
+    } as any);
     if (error) throw new Error(error.message);
     return { ok: true as const };
   });
