@@ -1,11 +1,32 @@
 export type Card = { label: string; title: string; body: string };
 
+export type FaqItem = { question: string; answer: string };
+
 export type LeadMagnetConfig = {
   leadMagnetId: string;
   fieldReportLabel: string;
   classificationBarText: string;
   brandName: string;
   countyName: string;
+
+  // ─── SEO & page settings ────────────────────────────────────────────────────
+  seo?: {
+    pageTitle?: string;
+    metaDescription?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    canonicalPath?: string;
+  };
+
+  // ─── Integrations ────────────────────────────────────────────────────────────
+  /** Systeme.io tag ID assigned to contacts who opt in via this lead magnet.
+   *  Change this here when creating a new funnel — the live value lives in
+   *  src/lib/subscribe.ts and must be updated there too. */
+  systemeTagId?: number;
+
+  /** URL of the download / thank-you page shown after successful opt-in.
+   *  Currently handled by Systeme.io automation. Update when the page moves. */
+  downloadPageUrl?: string;
 
   navbar?: {
     logoMonogram?: string;
@@ -25,6 +46,7 @@ export type LeadMagnetConfig = {
   privacyPolicyUrl?: string;
 
   hero: {
+    visible?: boolean;
     eyebrow: string;
     titleLine1: string;
     titleHighlight: string;
@@ -35,22 +57,24 @@ export type LeadMagnetConfig = {
     privacyPolicyText: string;
   };
 
-  problem: { title: string; intro: string[]; cards: Card[] };
-  mechanism: { title: string; intro: string; cards: Card[] };
-  discover: { title: string; intro: string; bullets: string[] };
+  problem: { visible?: boolean; title: string; intro: string[]; cards: Card[] };
+  mechanism: { visible?: boolean; title: string; intro: string; cards: Card[] };
+  discover: { visible?: boolean; title: string; intro: string; bullets: string[] };
 
-  midCta: { eyebrow: string; headline: string; buttonLabel: string };
+  midCta: { visible?: boolean; eyebrow: string; headline: string; buttonLabel: string };
 
   preview: {
+    visible?: boolean;
     title: string;
     intro: string;
     items: { label: string; image: { src: string; alt: string } }[];
   };
 
-  whyItMatters: { title: string; intro: string; cards: Card[] };
-  about: { title: string; paragraphs: string[] };
+  whyItMatters: { visible?: boolean; title: string; intro: string; cards: Card[] };
+  about: { visible?: boolean; title: string; paragraphs: string[] };
 
   finalCta: {
+    visible?: boolean;
     eyebrow: string;
     titleLine1: string;
     titleHighlight: string;
@@ -58,9 +82,13 @@ export type LeadMagnetConfig = {
     buttonLabel: string;
   };
 
-  faq: { question: string; answer: string }[];
+  faq: {
+    visible?: boolean;
+    items: FaqItem[];
+  };
 
   footer: {
+    visible?: boolean;
     brandName: string;
     fictionDisclaimer: string;
     noBrandsLine: string;

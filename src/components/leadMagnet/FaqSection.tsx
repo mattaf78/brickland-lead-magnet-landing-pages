@@ -17,7 +17,7 @@ export function FaqSection({ config }: { config: LeadMagnetConfig }) {
         </h2>
         <div className="mt-8 border-2 border-brand-green bg-panel-cream">
           <Accordion type="single" collapsible className="divide-y divide-brand-brown/30">
-            {config.faq.map((item, i) => (
+            {config.faq.items.map((item, i) => (
               <AccordionItem key={i} value={`faq-${i}`} className="border-b-0 px-5 sm:px-6">
                 <AccordionTrigger className="py-5 text-left font-display text-base uppercase tracking-wide text-brand-green hover:text-brand-red sm:text-lg">
                   <span className="mr-3 font-mono text-xs text-brand-red">{String(i + 1).padStart(2, "0")}</span>

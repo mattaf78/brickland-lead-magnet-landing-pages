@@ -5,13 +5,13 @@ import { ultraProcessedFoodTrap as config } from "@/content/leadMagnets/ultraPro
 export const Route = createFileRoute("/thetruth")({
   head: () => ({
     meta: [
-      { title: "The Ultra-Processed Food Trap — Free Brickland Field Guide" },
-      { name: "description", content: config.hero.subtitle },
-      { property: "og:title", content: "The Food System Isn't Broken. It's Built This Way." },
-      { property: "og:description", content: config.hero.subtitle },
+      { title: config.seo?.pageTitle ?? config.brandName },
+      { name: "description", content: config.seo?.metaDescription ?? config.hero.subtitle },
+      { property: "og:title", content: config.seo?.ogTitle ?? config.hero.titleLine1 },
+      { property: "og:description", content: config.seo?.ogDescription ?? config.hero.subtitle },
       { property: "og:image", content: config.hero.image.src },
-      { property: "og:url", content: "https://thewellnessbrckdown.com/thetruth" },
-      { property: "og:site_name", content: "The Wellness Brickdown" },
+      { property: "og:url", content: `https://thewellnessbrckdown.com${config.seo?.canonicalPath ?? "/thetruth"}` },
+      { property: "og:site_name", content: config.brandName },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: config.hero.image.src },
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/thetruth")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: config.faq.map((f) => ({
+          mainEntity: config.faq.items.map((f) => ({
             "@type": "Question",
             name: f.question,
             acceptedAnswer: { "@type": "Answer", text: f.answer },

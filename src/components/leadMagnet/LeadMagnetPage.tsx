@@ -13,6 +13,9 @@ import { FinalCta } from "./FinalCta";
 import { FaqSection } from "./FaqSection";
 import { Footer } from "./Footer";
 
+/** Set visible: false on any section in the content config to hide it. */
+const show = (flag: boolean | undefined) => flag !== false;
+
 export function LeadMagnetPage({ config }: { config: LeadMagnetConfig }) {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -25,18 +28,18 @@ export function LeadMagnetPage({ config }: { config: LeadMagnetConfig }) {
         ctaLabel={config.navbar?.ctaLabel}
       />
       <main>
-        <Hero config={config} />
-        <ProblemSection config={config} />
-        <MechanismSection config={config} />
-        <DiscoverSection config={config} />
-        <MidCtaBand config={config} />
-        <PreviewSection config={config} />
-        <WhyItMattersSection config={config} />
-        <AboutSection config={config} />
-        <FinalCta config={config} />
-        <FaqSection config={config} />
+        {show(config.hero.visible) && <Hero config={config} />}
+        {show(config.problem.visible) && <ProblemSection config={config} />}
+        {show(config.mechanism.visible) && <MechanismSection config={config} />}
+        {show(config.discover.visible) && <DiscoverSection config={config} />}
+        {show(config.midCta.visible) && <MidCtaBand config={config} />}
+        {show(config.preview.visible) && <PreviewSection config={config} />}
+        {show(config.whyItMatters.visible) && <WhyItMattersSection config={config} />}
+        {show(config.about.visible) && <AboutSection config={config} />}
+        {show(config.finalCta.visible) && <FinalCta config={config} />}
+        {show(config.faq.visible) && <FaqSection config={config} />}
       </main>
-      <Footer config={config} />
+      {show(config.footer.visible) && <Footer config={config} />}
     </div>
   );
 }
