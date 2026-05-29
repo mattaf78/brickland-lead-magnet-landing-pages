@@ -7,6 +7,7 @@ import { MechanismSection } from "./MechanismSection";
 import { DiscoverSection } from "./DiscoverSection";
 import { MidCtaBand } from "./MidCtaBand";
 import { PreviewSection } from "./PreviewSection";
+import { CalloutSection } from "./CalloutSection";
 import { WhyItMattersSection } from "./WhyItMattersSection";
 import { AboutSection } from "./AboutSection";
 import { FinalCta } from "./FinalCta";
@@ -34,6 +35,7 @@ export function LeadMagnetPage({ config }: { config: LeadMagnetConfig }) {
         {show(config.discover.visible) && <DiscoverSection config={config} />}
         {show(config.midCta.visible) && <MidCtaBand config={config} />}
         {show(config.preview.visible) && <PreviewSection config={config} />}
+        {config.callout && show(config.callout.visible) && <CalloutSection config={config} />}
         {show(config.whyItMatters.visible) && <WhyItMattersSection config={config} />}
         {show(config.about.visible) && <AboutSection config={config} />}
         {show(config.finalCta.visible) && <FinalCta config={config} />}

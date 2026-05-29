@@ -16,12 +16,49 @@ export function PreviewSection({ config }: { config: LeadMagnetConfig }) {
             <figure key={item.label} className="relative">
               <div className="relative border-2 border-brand-green bg-panel-cream p-2 shadow-[4px_4px_0_0_var(--brand-green)]">
                 <div className="pointer-events-none absolute inset-1 border border-brand-brown/40" />
-                <img src={item.image.src} alt={item.image.alt} className="relative w-full" loading="lazy" />
+                {item.image ? (
+                  <img
+                    src={item.image.src}
+                    alt={item.image.alt}
+                    className="relative w-full"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="relative p-4 sm:p-5">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-red">
+                      No. {String(i + 1).padStart(2, "0")}
+                    </p>
+                    {item.title && (
+                      <h3 className="mt-2 font-display text-lg uppercase leading-tight text-brand-green sm:text-xl">
+                        {item.title}
+                      </h3>
+                    )}
+                    {item.body && (
+                      <p className="mt-2 text-sm leading-relaxed text-foreground/85">
+                        {item.body}
+                      </p>
+                    )}
+                  </div>
+                )}
               </div>
               <figcaption className="mt-2 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-brand-brown">
                 <span>Page {String(i + 1).padStart(2, "0")}</span>
                 <span className="text-brand-red">{item.label}</span>
               </figcaption>
+              {item.image && (item.title || item.body) && (
+                <div className="mt-2">
+                  {item.title && (
+                    <h3 className="font-display text-base uppercase leading-tight text-brand-green">
+                      {item.title}
+                    </h3>
+                  )}
+                  {item.body && (
+                    <p className="mt-1 text-sm leading-relaxed text-foreground/85">
+                      {item.body}
+                    </p>
+                  )}
+                </div>
+              )}
             </figure>
           ))}
         </div>

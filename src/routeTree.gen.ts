@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as YourvoiceRouteImport } from './routes/yourvoice'
+import { Route as Thetruth2RouteImport } from './routes/thetruth2'
 import { Route as ThetruthRouteImport } from './routes/thetruth'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const YourvoiceRoute = YourvoiceRouteImport.update({
   id: '/yourvoice',
   path: '/yourvoice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Thetruth2Route = Thetruth2RouteImport.update({
+  id: '/thetruth2',
+  path: '/thetruth2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ThetruthRoute = ThetruthRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
   '/thetruth': typeof ThetruthRoute
+  '/thetruth2': typeof Thetruth2Route
   '/yourvoice': typeof YourvoiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
   '/thetruth': typeof ThetruthRoute
+  '/thetruth2': typeof Thetruth2Route
   '/yourvoice': typeof YourvoiceRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
   '/thetruth': typeof ThetruthRoute
+  '/thetruth2': typeof Thetruth2Route
   '/yourvoice': typeof YourvoiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/privacy' | '/thetruth' | '/yourvoice'
+  fullPaths: '/' | '/privacy' | '/thetruth' | '/thetruth2' | '/yourvoice'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/privacy' | '/thetruth' | '/yourvoice'
-  id: '__root__' | '/' | '/privacy' | '/thetruth' | '/yourvoice'
+  to: '/' | '/privacy' | '/thetruth' | '/thetruth2' | '/yourvoice'
+  id: '__root__' | '/' | '/privacy' | '/thetruth' | '/thetruth2' | '/yourvoice'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PrivacyRoute: typeof PrivacyRoute
   ThetruthRoute: typeof ThetruthRoute
+  Thetruth2Route: typeof Thetruth2Route
   YourvoiceRoute: typeof YourvoiceRoute
 }
 
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/yourvoice'
       fullPath: '/yourvoice'
       preLoaderRoute: typeof YourvoiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thetruth2': {
+      id: '/thetruth2'
+      path: '/thetruth2'
+      fullPath: '/thetruth2'
+      preLoaderRoute: typeof Thetruth2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/thetruth': {
@@ -106,18 +123,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PrivacyRoute: PrivacyRoute,
   ThetruthRoute: ThetruthRoute,
+  Thetruth2Route: Thetruth2Route,
   YourvoiceRoute: YourvoiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

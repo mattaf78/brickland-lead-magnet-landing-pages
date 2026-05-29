@@ -67,11 +67,26 @@ export type LeadMagnetConfig = {
     visible?: boolean;
     title: string;
     intro: string;
-    items: { label: string; image: { src: string; alt: string } }[];
+    items: {
+      label: string;
+      title?: string;
+      body?: string;
+      image?: { src: string; alt: string };
+    }[];
   };
 
   whyItMatters: { visible?: boolean; title: string; intro: string; cards: Card[] };
   about: { visible?: boolean; title: string; paragraphs: string[] };
+
+  /** Reusable callout block — short, emphatic stacked lines + closing line.
+   *  Used for "This is not a diet guide" style framing sections. */
+  callout?: {
+    visible?: boolean;
+    eyebrow?: string;
+    heading: string;
+    lines: string[];
+    closingLine?: string;
+  };
 
   finalCta: {
     visible?: boolean;
