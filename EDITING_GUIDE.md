@@ -67,6 +67,58 @@ Set it back to `true` (or remove the line) to restore it.
 
 ---
 
+## Adding a new lead magnet page
+
+The page at `/thetruth` (WB001) and `/thetruth2` (WB002) both share the same
+components. To add a third lead magnet:
+
+1. **Copy a content file:** duplicate `src/content/leadMagnets/foodSystemBuiltThisWay.ts`
+   and rename it (e.g. `myNewGuide.ts`). Update every field.
+2. **Flip section visibility:** set `visible: true` on the sections you want
+   and `visible: false` on the ones you don't. Required-but-hidden sections
+   can keep empty strings/arrays — they won't render.
+3. **Add a route:** copy `src/routes/thetruth2.tsx` to e.g.
+   `src/routes/mynewguide.tsx` and update the import + `createFileRoute` path.
+4. **Assign a unique `systemeTagId`** in the new content file, and update
+   `src/lib/subscribe.ts` to route opt-ins from this funnel to that tag.
+
+### The `callout` block (optional)
+
+Use a callout for short, emphatic "this is not X" framing:
+
+```ts
+callout: {
+  visible: true,
+  eyebrow: "This Is Not a Diet Guide",
+  heading: "No Rules. No Guilt. No Calorie Maths.",
+  lines: ["No calorie counting.", "No guilt trip.", "No boring food rules."],
+  closingLine: "Once you see the system, you stop blaming yourself for it.",
+}
+```
+
+Omit the whole `callout` field on pages that don't need it.
+
+### `preview` items — image optional
+
+Each item in `preview.items` can be a text card (label + title + body), an
+image card (label + image), or both. Use whichever fits the page:
+
+```ts
+preview: {
+  items: [
+    // text-only
+    { label: "01", title: "The Ingredient Playbook", body: "How food is…" },
+    // image-only (original WB001 shape)
+    { label: "Cover", image: { src: coverImg, alt: "Cover" } },
+    // both
+    { label: "02", title: "Supermarket Trap", body: "Shelf cues…",
+      image: { src: shelfImg, alt: "Shelf" } },
+  ],
+}
+```
+
+---
+
 ## 3. Change CTA button text
 
 | Button | Field to edit |
