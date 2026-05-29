@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as YourvoiceRouteImport } from './routes/yourvoice'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as PageSlugRouteImport } from './routes/$pageSlug'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +23,11 @@ const YourvoiceRoute = YourvoiceRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PageSlugRoute = PageSlugRouteImport.update({
@@ -38,12 +44,14 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$pageSlug': typeof PageSlugRoute
+  '/admin': typeof AdminRoute
   '/privacy': typeof PrivacyRoute
   '/yourvoice': typeof YourvoiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$pageSlug': typeof PageSlugRoute
+  '/admin': typeof AdminRoute
   '/privacy': typeof PrivacyRoute
   '/yourvoice': typeof YourvoiceRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$pageSlug': typeof PageSlugRoute
+  '/admin': typeof AdminRoute
   '/privacy': typeof PrivacyRoute
   '/yourvoice': typeof YourvoiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$pageSlug' | '/privacy' | '/yourvoice'
+  fullPaths: '/' | '/$pageSlug' | '/admin' | '/privacy' | '/yourvoice'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$pageSlug' | '/privacy' | '/yourvoice'
-  id: '__root__' | '/' | '/$pageSlug' | '/privacy' | '/yourvoice'
+  to: '/' | '/$pageSlug' | '/admin' | '/privacy' | '/yourvoice'
+  id: '__root__' | '/' | '/$pageSlug' | '/admin' | '/privacy' | '/yourvoice'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PageSlugRoute: typeof PageSlugRoute
+  AdminRoute: typeof AdminRoute
   PrivacyRoute: typeof PrivacyRoute
   YourvoiceRoute: typeof YourvoiceRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$pageSlug': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PageSlugRoute: PageSlugRoute,
+  AdminRoute: AdminRoute,
   PrivacyRoute: PrivacyRoute,
   YourvoiceRoute: YourvoiceRoute,
 }
