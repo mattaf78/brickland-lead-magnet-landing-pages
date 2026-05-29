@@ -38,8 +38,8 @@ export const foodSystemBuiltThisWay: LeadMagnetConfig = {
     canonicalPath: "/thetruth2",
   },
 
-  // TODO: replace with the WB002 Systeme.io tag before publishing.
-  systemeTagId: 0,
+  // Uses the same Systeme.io tag as WB001 (/thetruth).
+  systemeTagId: 2018014,
   downloadPageUrl: "",
 
   navbar: {
