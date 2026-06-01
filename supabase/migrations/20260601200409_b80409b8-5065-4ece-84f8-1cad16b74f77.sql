@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.grant_admin_on_email_match() FROM PUBLIC, anon, authenticated;
