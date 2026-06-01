@@ -8,7 +8,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 // PDF FILE: Upload your PDF to public/lead-magnets/ and update
 // PDF_HREF below. The file will be served at /lead-magnets/<name>.
 // ================================================================
-const PDF_HREF = "/lead-magnets/WB001_LM_Brickland_Field_Guide.pdf";
+const PDF_HREF = "/lead-magnets/They%20Knew%20Lead%20Magnet.pdf";
 
 export const Route = createFileRoute("/download")({
   component: DownloadPage,
