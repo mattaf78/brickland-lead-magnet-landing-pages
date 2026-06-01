@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DownloadRouteImport } from './routes/download'
 import { Route as YourvoiceRouteImport } from './routes/yourvoice'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminSlugRouteImport } from './routes/admin.$slug'
 
+const DownloadRoute = DownloadRouteImport.update({
+  id: '/download',
+  path: '/download',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const YourvoiceRoute = YourvoiceRouteImport.update({
   id: '/yourvoice',
   path: '/yourvoice',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/yourvoice': typeof YourvoiceRoute
+  '/download': typeof DownloadRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/$pageSlug': typeof PageSlugRoute
   '/privacy': typeof PrivacyRoute
   '/yourvoice': typeof YourvoiceRoute
+  '/download': typeof DownloadRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/yourvoice': typeof YourvoiceRoute
+  '/download': typeof DownloadRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -88,10 +97,11 @@ export interface FileRouteTypes {
     | '/admin'
     | '/privacy'
     | '/yourvoice'
+    | '/download'
     | '/admin/$slug'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$pageSlug' | '/privacy' | '/yourvoice' | '/admin/$slug' | '/admin'
+  to: '/' | '/$pageSlug' | '/privacy' | '/yourvoice' | '/download' | '/admin/$slug' | '/admin'
   id:
     | '__root__'
     | '/'
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/privacy'
     | '/yourvoice'
+    | '/download'
     | '/admin/$slug'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -109,6 +120,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   YourvoiceRoute: typeof YourvoiceRoute
+  DownloadRoute: typeof DownloadRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -118,6 +130,13 @@ declare module '@tanstack/react-router' {
       path: '/yourvoice'
       fullPath: '/yourvoice'
       preLoaderRoute: typeof YourvoiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/download': {
+      id: '/download'
+      path: '/download'
+      fullPath: '/download'
+      preLoaderRoute: typeof DownloadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -183,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   YourvoiceRoute: YourvoiceRoute,
+  DownloadRoute: DownloadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
