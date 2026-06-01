@@ -9,20 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as DownloadRouteImport } from './routes/download'
 import { Route as YourvoiceRouteImport } from './routes/yourvoice'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as DownloadRouteImport } from './routes/download'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as PageSlugRouteImport } from './routes/$pageSlug'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminSlugRouteImport } from './routes/admin.$slug'
 
-const DownloadRoute = DownloadRouteImport.update({
-  id: '/download',
-  path: '/download',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const YourvoiceRoute = YourvoiceRouteImport.update({
   id: '/yourvoice',
   path: '/yourvoice',
@@ -31,6 +26,11 @@ const YourvoiceRoute = YourvoiceRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DownloadRoute = DownloadRouteImport.update({
+  id: '/download',
+  path: '/download',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -63,18 +63,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$pageSlug': typeof PageSlugRoute
   '/admin': typeof AdminRouteWithChildren
+  '/download': typeof DownloadRoute
   '/privacy': typeof PrivacyRoute
   '/yourvoice': typeof YourvoiceRoute
-  '/download': typeof DownloadRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$pageSlug': typeof PageSlugRoute
+  '/download': typeof DownloadRoute
   '/privacy': typeof PrivacyRoute
   '/yourvoice': typeof YourvoiceRoute
-  '/download': typeof DownloadRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -83,9 +83,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$pageSlug': typeof PageSlugRoute
   '/admin': typeof AdminRouteWithChildren
+  '/download': typeof DownloadRoute
   '/privacy': typeof PrivacyRoute
   '/yourvoice': typeof YourvoiceRoute
-  '/download': typeof DownloadRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -95,21 +95,28 @@ export interface FileRouteTypes {
     | '/'
     | '/$pageSlug'
     | '/admin'
+    | '/download'
     | '/privacy'
     | '/yourvoice'
-    | '/download'
     | '/admin/$slug'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$pageSlug' | '/privacy' | '/yourvoice' | '/download' | '/admin/$slug' | '/admin'
+  to:
+    | '/'
+    | '/$pageSlug'
+    | '/download'
+    | '/privacy'
+    | '/yourvoice'
+    | '/admin/$slug'
+    | '/admin'
   id:
     | '__root__'
     | '/'
     | '/$pageSlug'
     | '/admin'
+    | '/download'
     | '/privacy'
     | '/yourvoice'
-    | '/download'
     | '/admin/$slug'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -118,9 +125,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PageSlugRoute: typeof PageSlugRoute
   AdminRoute: typeof AdminRouteWithChildren
+  DownloadRoute: typeof DownloadRoute
   PrivacyRoute: typeof PrivacyRoute
   YourvoiceRoute: typeof YourvoiceRoute
-  DownloadRoute: typeof DownloadRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -132,18 +139,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof YourvoiceRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/download': {
-      id: '/download'
-      path: '/download'
-      fullPath: '/download'
-      preLoaderRoute: typeof DownloadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/download': {
+      id: '/download'
+      path: '/download'
+      fullPath: '/download'
+      preLoaderRoute: typeof DownloadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -200,9 +207,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PageSlugRoute: PageSlugRoute,
   AdminRoute: AdminRouteWithChildren,
+  DownloadRoute: DownloadRoute,
   PrivacyRoute: PrivacyRoute,
   YourvoiceRoute: YourvoiceRoute,
-  DownloadRoute: DownloadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
