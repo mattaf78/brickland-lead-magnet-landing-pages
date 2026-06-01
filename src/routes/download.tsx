@@ -113,7 +113,8 @@ function DownloadPage() {
 
                 <a
                   href={PDF_HREF}
-                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Download the Brickland Field Guide PDF"
                   style={{ display: "block", width: "100%", background: C.yellow, color: C.charcoal, ...bodyFont, fontSize: "1.2rem", fontWeight: "bold", textDecoration: "none", padding: "1.1rem 2rem", border: `3px solid ${C.charcoal}`, textAlign: "center" as const, lineHeight: 1.3, boxSizing: "border-box" as const }}
                   onMouseEnter={e => (e.currentTarget.style.background = "#c49238")}
