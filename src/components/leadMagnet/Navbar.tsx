@@ -8,9 +8,11 @@ export function Navbar({ brandName, fieldReportLabel, leadMagnetId, logoMonogram
           <span className="grid h-9 w-9 place-items-center bg-brand-green text-panel-cream font-display text-lg">{logoMonogram}</span>
           <span className="hidden sm:inline font-display text-base uppercase leading-tight text-brand-green sm:text-lg">{brandName}</span>
         </a>
-        <FieldReportTag className="hidden md:inline-flex">
-          {fieldReportLabel} · {leadMagnetId}
-        </FieldReportTag>
+        {fieldReportLabel && (
+          <FieldReportTag className="hidden md:inline-flex">
+            {fieldReportLabel}
+          </FieldReportTag>
+        )}
         <a
           href="#final-cta"
           className="inline-flex shrink-0 h-10 items-center bg-brand-red px-4 font-display text-sm uppercase tracking-wider text-panel-cream transition-transform hover:-translate-y-0.5"

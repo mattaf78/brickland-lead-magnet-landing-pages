@@ -21,9 +21,9 @@ import coverImg from "@/assets/leadMagnets/ultra-processed/cover.png";
 
 export const foodSystemBuiltThisWay: LeadMagnetConfig = {
   leadMagnetId: "LP002",
-  fieldReportLabel: "Brickland Field Report",
+  fieldReportLabel: "", // Empty: hides the field-report tag from the navbar
   classificationBarText:
-    "Wellness Brickdown — Field Report LP002 — Educational Content Only — Not Medical Advice",
+    "Wellness Brickdown — Educational Content Only — Not Medical Advice",
   brandName: "The Wellness Brickdown",
   countyName: "Craving County",
 
@@ -48,7 +48,7 @@ export const foodSystemBuiltThisWay: LeadMagnetConfig = {
   },
 
   sectionLabels: {
-    discover: "Inside, You'll Learn",
+    discover: "Inside What You'll Learn",
     preview: "What's Included",
     faq: { eyebrow: "Frequently Asked", heading: "Questions from the Field" },
   },
@@ -77,10 +77,11 @@ export const foodSystemBuiltThisWay: LeadMagnetConfig = {
   problem: { visible: false, title: "", intro: [], cards: [] },
   mechanism: { visible: false, title: "", intro: "", cards: [] },
 
-  // ─── Inside, You'll Learn ───────────────────────────────────────────────
+  // ─── Inside What You'll Learn ───────────────────────────────────────────
+  // title is empty so the sectionLabel (with red dot) acts as the sole heading
   discover: {
     visible: true,
-    title: "Inside, You'll Learn",
+    title: "",
     intro:
       "A clear, visual breakdown of the hidden systems behind ultra-processed food, cravings, confusion and repeat consumption.",
     bullets: [
@@ -96,9 +97,10 @@ export const foodSystemBuiltThisWay: LeadMagnetConfig = {
   midCta: { visible: false, eyebrow: "", headline: "", buttonLabel: "" },
 
   // ─── What's Included (six text-only cards) ──────────────────────────────
+  // title is empty so the sectionLabel (with red dot) acts as the sole heading
   preview: {
     visible: true,
-    title: "What's Included",
+    title: "",
     intro:
       "Six short sections that map the system behind everyday food choices — and one practical rebuild.",
     items: [
@@ -138,9 +140,9 @@ export const foodSystemBuiltThisWay: LeadMagnetConfig = {
   whyItMatters: { visible: false, title: "", intro: "", cards: [] },
   about: { visible: false, title: "", paragraphs: [] },
 
-  // ─── This Is Not a Diet Guide (callout) ─────────────────────────────────
+  // ─── This Is Not a Diet Guide (callout) — hidden per editorial decision ──
   callout: {
-    visible: true,
+    visible: false,
     eyebrow: "This Is Not a Diet Guide",
     heading: "No Rules. No Guilt. No Calorie Maths.",
     lines: [
