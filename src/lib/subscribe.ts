@@ -89,7 +89,8 @@ export const subscribeToList = createServerFn({ method: "POST" })
         { method: "GET", headers }
       );
       if (!lookupRes.ok) {
-        console.error(`[subscribe] contact lookup failed: ${lookupRes.status}`);
+        const body = await lookupRes.text().catch(() => "");
+        console.error(`[subscribe] contact lookup failed: ${lookupRes.status} ${body}`);
         throw new Error("Something went wrong looking up contact.");
       }
       contactId = extractId(await lookupRes.json());
@@ -98,8 +99,25 @@ export const subscribeToList = createServerFn({ method: "POST" })
         throw new Error("Could not retrieve existing contact ID.");
       }
     } else {
-      console.error(`[subscribe] contact creation failed: ${contactRes.status}`);
-      throw new Error("Something went wrong creating contact.");
+      const body = await contactRes.text().catch(() => "");
+      console.error(`[subscribe] contact creation failed: ${contactRes.status} ${body}`);
+      // 403 from systeme.io often indicates the email was flagged (disposable,
+      // invalid MX, fraud-protection). Fall back to looking up an existing
+      // contact so we can still tag them if they already exist.
+      if (contactRes.status === 403) {
+        const lookupRes = await fetch(
+          `${SYSTEME_BASE}/contacts?email=${encodeURIComponent(data.email)}`,
+          { method: "GET", headers }
+        );
+        if (lookupRes.ok) {
+          contactId = extractId(await lookupRes.json());
+        }
+        if (!contactId) {
+          throw new Error("We couldn't accept that email address. Please try a different one.");
+        }
+      } else {
+        throw new Error("Something went wrong creating contact.");
+      }
     }
 
     // Step 2: assign tag — 409/422 means already tagged, treat as success
