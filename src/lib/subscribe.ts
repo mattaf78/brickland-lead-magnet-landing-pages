@@ -66,6 +66,9 @@ export const subscribeToList = createServerFn({ method: "POST" })
       "X-API-Key": apiKey,
       "Content-Type": "application/json",
       accept: "application/json",
+      // Systeme.io's WAF returns 403 to the default Cloudflare Workers
+      // User-Agent. Send a normal-looking UA so requests reach the API.
+      "User-Agent": "Mozilla/5.0 (compatible; WellnessBrickdown/1.0; +https://thewellnessbrickdown.com)",
     };
 
     // Step 1: create contact, or look up existing on 422
