@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as YourvoiceRouteImport } from './routes/yourvoice'
+import { Route as TheReceiptsRouteImport } from './routes/the-receipts'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -21,6 +22,11 @@ import { Route as AdminSlugRouteImport } from './routes/admin.$slug'
 const YourvoiceRoute = YourvoiceRouteImport.update({
   id: '/yourvoice',
   path: '/yourvoice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TheReceiptsRoute = TheReceiptsRouteImport.update({
+  id: '/the-receipts',
+  path: '/the-receipts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/download': typeof DownloadRoute
   '/privacy': typeof PrivacyRoute
+  '/the-receipts': typeof TheReceiptsRoute
   '/yourvoice': typeof YourvoiceRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/$pageSlug': typeof PageSlugRoute
   '/download': typeof DownloadRoute
   '/privacy': typeof PrivacyRoute
+  '/the-receipts': typeof TheReceiptsRoute
   '/yourvoice': typeof YourvoiceRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/admin': typeof AdminIndexRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/download': typeof DownloadRoute
   '/privacy': typeof PrivacyRoute
+  '/the-receipts': typeof TheReceiptsRoute
   '/yourvoice': typeof YourvoiceRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/download'
     | '/privacy'
+    | '/the-receipts'
     | '/yourvoice'
     | '/admin/$slug'
     | '/admin/'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/$pageSlug'
     | '/download'
     | '/privacy'
+    | '/the-receipts'
     | '/yourvoice'
     | '/admin/$slug'
     | '/admin'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/download'
     | '/privacy'
+    | '/the-receipts'
     | '/yourvoice'
     | '/admin/$slug'
     | '/admin/'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   DownloadRoute: typeof DownloadRoute
   PrivacyRoute: typeof PrivacyRoute
+  TheReceiptsRoute: typeof TheReceiptsRoute
   YourvoiceRoute: typeof YourvoiceRoute
 }
 
@@ -137,6 +150,13 @@ declare module '@tanstack/react-router' {
       path: '/yourvoice'
       fullPath: '/yourvoice'
       preLoaderRoute: typeof YourvoiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/the-receipts': {
+      id: '/the-receipts'
+      path: '/the-receipts'
+      fullPath: '/the-receipts'
+      preLoaderRoute: typeof TheReceiptsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -209,6 +229,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   DownloadRoute: DownloadRoute,
   PrivacyRoute: PrivacyRoute,
+  TheReceiptsRoute: TheReceiptsRoute,
   YourvoiceRoute: YourvoiceRoute,
 }
 export const routeTree = rootRouteImport
