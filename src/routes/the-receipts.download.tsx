@@ -6,7 +6,8 @@ import titleReceiptsAsset from "@/assets/receipts/title_receipts.jpg.asset.json"
  * Thank-you / download page. The PDF asset isn't uploaded yet — drop the
  * `.asset.json` for the report into `src/assets/receipts/` and swap PDF_URL.
  */
-const PDF_URL = "#"; // TODO: replace with The Receipts PDF asset URL when supplied.
+const PDF_URL =
+  "https://gsjdzoxzpcvcaukroakj.supabase.co/storage/v1/object/public/downloads/WB004_LeadMagnet_TheReceipts_v11_2026-06-22.pdf";
 
 export const Route = createFileRoute("/the-receipts/download")({
   head: () => ({
