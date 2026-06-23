@@ -11,15 +11,24 @@ import { subscribeToList } from "@/lib/subscribe";
  * Image slots — replace each value with the final CDN URL (e.g. import a
  * `.asset.json` pointer and use `asset.url`) when the artwork lands.
  */
+import titleReceiptsAsset from "@/assets/receipts/title_receipts.jpg.asset.json";
+import f01Asset from "@/assets/receipts/F01.jpg.asset.json";
+import aisleAsset from "@/assets/receipts/aisle.jpg.asset.json";
+import f03Asset from "@/assets/receipts/F03.jpg.asset.json";
+import f05Asset from "@/assets/receipts/F05.jpg.asset.json";
+import wallAsset from "@/assets/receipts/wall.jpg.asset.json";
+import conclusionAsset from "@/assets/receipts/conclusion.jpg.asset.json";
+import elaraAsset from "@/assets/receipts/elara2.jpg.asset.json";
+
 const IMG = {
-  titleReceipts: "/img/title_receipts.jpg",
-  f01: "/img/F01.jpg",
-  aisle: "/img/aisle.jpg",
-  f03: "/img/F03.jpg",
-  f05: "/img/F05.jpg",
-  wall: "/img/wall.jpg",
-  conclusion: "/img/conclusion.jpg",
-  elara: "/img/elara2.jpg",
+  titleReceipts: titleReceiptsAsset.url,
+  f01: f01Asset.url,
+  aisle: aisleAsset.url,
+  f03: f03Asset.url,
+  f05: f05Asset.url,
+  wall: wallAsset.url,
+  conclusion: conclusionAsset.url,
+  elara: elaraAsset.url,
 };
 
 const LEAD_MAGNET_ID = "the-receipts";
