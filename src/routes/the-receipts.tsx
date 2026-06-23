@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { subscribeToList } from "@/lib/subscribe";
@@ -59,6 +59,7 @@ type FormState = "idle" | "submitting" | "success" | "error";
 
 function ReceiptsForm({ idSuffix }: { idSuffix: string }) {
   const subscribe = useServerFn(subscribeToList);
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [state, setState] = useState<FormState>("idle");
@@ -79,6 +80,7 @@ function ReceiptsForm({ idSuffix }: { idSuffix: string }) {
         },
       });
       setState("success");
+      navigate({ to: "/the-receipts/confirm" });
     } catch (err) {
       setState("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Please try again.");

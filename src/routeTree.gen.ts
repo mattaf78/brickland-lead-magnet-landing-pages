@@ -17,6 +17,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as PageSlugRouteImport } from './routes/$pageSlug'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as TheReceiptsDownloadRouteImport } from './routes/the-receipts.download'
 import { Route as TheReceiptsConfirmRouteImport } from './routes/the-receipts.confirm'
 import { Route as AdminSlugRouteImport } from './routes/admin.$slug'
 
@@ -60,6 +61,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const TheReceiptsDownloadRoute = TheReceiptsDownloadRouteImport.update({
+  id: '/download',
+  path: '/download',
+  getParentRoute: () => TheReceiptsRoute,
+} as any)
 const TheReceiptsConfirmRoute = TheReceiptsConfirmRouteImport.update({
   id: '/confirm',
   path: '/confirm',
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/yourvoice': typeof YourvoiceRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/the-receipts/confirm': typeof TheReceiptsConfirmRoute
+  '/the-receipts/download': typeof TheReceiptsDownloadRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/yourvoice': typeof YourvoiceRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/the-receipts/confirm': typeof TheReceiptsConfirmRoute
+  '/the-receipts/download': typeof TheReceiptsDownloadRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/yourvoice': typeof YourvoiceRoute
   '/admin/$slug': typeof AdminSlugRoute
   '/the-receipts/confirm': typeof TheReceiptsConfirmRoute
+  '/the-receipts/download': typeof TheReceiptsDownloadRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/yourvoice'
     | '/admin/$slug'
     | '/the-receipts/confirm'
+    | '/the-receipts/download'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/yourvoice'
     | '/admin/$slug'
     | '/the-receipts/confirm'
+    | '/the-receipts/download'
     | '/admin'
   id:
     | '__root__'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/yourvoice'
     | '/admin/$slug'
     | '/the-receipts/confirm'
+    | '/the-receipts/download'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -213,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/the-receipts/download': {
+      id: '/the-receipts/download'
+      path: '/download'
+      fullPath: '/the-receipts/download'
+      preLoaderRoute: typeof TheReceiptsDownloadRouteImport
+      parentRoute: typeof TheReceiptsRoute
+    }
     '/the-receipts/confirm': {
       id: '/the-receipts/confirm'
       path: '/confirm'
@@ -244,10 +263,12 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface TheReceiptsRouteChildren {
   TheReceiptsConfirmRoute: typeof TheReceiptsConfirmRoute
+  TheReceiptsDownloadRoute: typeof TheReceiptsDownloadRoute
 }
 
 const TheReceiptsRouteChildren: TheReceiptsRouteChildren = {
   TheReceiptsConfirmRoute: TheReceiptsConfirmRoute,
+  TheReceiptsDownloadRoute: TheReceiptsDownloadRoute,
 }
 
 const TheReceiptsRouteWithChildren = TheReceiptsRoute._addFileChildren(
