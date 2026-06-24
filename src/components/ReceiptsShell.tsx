@@ -201,6 +201,26 @@ export const RECEIPTS_CSS = `
 
 /* download page */
 .receipts-root .dl-plate { max-width:420px; margin:0 auto 22px; }
+.receipts-root .hero-download {
+  background: var(--rc-green);
+  color: #f4ecd9;
+  border-bottom: 5px solid var(--rc-gold);
+  text-align: center;
+  padding: 56px 22px 64px;
+}
+.receipts-root .hero-download .wrap { width: 100%; }
+.receipts-root .hero-download .plate { background: var(--rc-cream2); border: 2px solid #e4d6ab; border-radius: 16px; padding: 18px; box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+.receipts-root .hero-download .plate img { max-width: 100%; height: auto; display: block; margin: 0 auto; mix-blend-mode: multiply; }
+.receipts-root .hero-download h1 { color: #f4ecd9; font-size: 42px; margin-bottom: 14px; }
+.receipts-root .hero-download h1 em { color: var(--rc-gold); font-style: normal; }
+.receipts-root .hero-download p { color: #e8dcbf; font-size: 17px; max-width: 640px; margin: 0 auto 14px; }
+.receipts-root .hero-download .dl-small { color: #bdb191; font-size: 13.5px; max-width: 560px; margin: 18px auto 0; }
+.receipts-root .tiny-card { background: var(--rc-card); border: 1px solid var(--rc-line); border-left: 5px solid var(--rc-amber); border-radius: 13px; padding: 22px 24px; max-width: 820px; margin: 28px auto 0; }
+.receipts-root .tiny-card h2 { font-size: 22px; margin-bottom: 6px; }
+.receipts-root .tiny-card p { font-size: 15px; color: #4a463c; }
+.receipts-root .voice-card { background: var(--rc-red); color: #fff; border-radius: 13px; padding: 22px 24px; max-width: 820px; margin: 22px auto 0; text-align: center; }
+.receipts-root .voice-card p { color: #ffe3d8; margin: 0; }
+.receipts-root .voice-card a { color: #fff; text-decoration: underline; font-weight: 800; }
 .receipts-root .dl-btn { display:inline-block; background:var(--rc-red); color:#fff; font-weight:800; font-size:18px; padding:16px 28px; border:0; border-radius:11px; cursor:pointer; text-decoration:none; box-shadow:0 5px 0 #8f3120; font-family:inherit; margin-top:6px; }
 .receipts-root .dl-btn:hover { filter:brightness(1.05); }
 .receipts-root .panel { background:var(--rc-card); border:1px solid var(--rc-line); border-left:5px solid var(--rc-gold); border-radius:13px; padding:22px 24px; max-width:820px; margin:30px auto 0; }
@@ -226,6 +246,7 @@ export const RECEIPTS_CSS = `
   .receipts-root .cards { grid-template-columns:1fr 1fr; }
   .receipts-root .hero h1 { font-size:32px; }
   .receipts-root .stage h1 { font-size:32px; }
+  .receipts-root .hero-download h1 { font-size:32px; }
   .receipts-root h2 { font-size:25px; }
 }
 @media (max-width:560px) {
