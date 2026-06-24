@@ -69,6 +69,9 @@ export const RECEIPTS_CSS = `
   background-image:radial-gradient(#e7dcbd 1px,transparent 1px);
   background-size:6px 6px;
   line-height:1.55;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 .receipts-root * { box-sizing:border-box; margin:0; padding:0; }
 .receipts-root .wrap { max-width:1080px; margin:0 auto; padding:0 22px; }
