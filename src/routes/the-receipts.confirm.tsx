@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { ReceiptsShell } from "@/components/ReceiptsShell";
 
 export const Route = createFileRoute("/the-receipts/confirm")({
