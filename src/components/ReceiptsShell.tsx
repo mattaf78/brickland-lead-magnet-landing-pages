@@ -246,6 +246,7 @@ export const RECEIPTS_CSS = `
   .receipts-root .cards { grid-template-columns:1fr 1fr; }
   .receipts-root .hero h1 { font-size:32px; }
   .receipts-root .stage h1 { font-size:32px; }
+  .receipts-root .hero-download h1 { font-size:32px; }
   .receipts-root h2 { font-size:25px; }
 }
 @media (max-width:560px) {
