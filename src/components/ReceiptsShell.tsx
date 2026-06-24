@@ -69,6 +69,9 @@ export const RECEIPTS_CSS = `
   background-image:radial-gradient(#e7dcbd 1px,transparent 1px);
   background-size:6px 6px;
   line-height:1.55;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 .receipts-root * { box-sizing:border-box; margin:0; padding:0; }
 .receipts-root .wrap { max-width:1080px; margin:0 auto; padding:0 22px; }
@@ -152,7 +155,40 @@ export const RECEIPTS_CSS = `
 .receipts-root .finalcta p { color:#ffe3d8; font-size:17px; margin:10px auto 22px; max-width:620px; }
 .receipts-root .finalcta .form { max-width:440px; margin:0 auto; color:var(--rc-body); }
 
-/* confirm + download shared */
+/* confirm page: full-height centred hero */
+.receipts-root .hero-confirm {
+  background: var(--rc-green);
+  color: #f4ecd9;
+  border-bottom: 5px solid var(--rc-gold);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 22px;
+  min-height: calc(100vh - 55px - 90px);
+}
+.receipts-root .hero-confirm .wrap { width: 100%; }
+.receipts-root .hero-confirm .badge {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: var(--rc-gold);
+  color: var(--rc-green);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+}
+.receipts-root .hero-confirm .badge svg { width: 36px; height: 36px; }
+.receipts-root .hero-confirm h1 { color: #f4ecd9; font-size: 42px; margin-bottom: 18px; }
+.receipts-root .hero-confirm h1 em { color: var(--rc-gold); font-style: normal; }
+.receipts-root .hero-confirm p { color: #e8dcbf; font-size: 17px; max-width: 640px; margin: 0 auto 14px; }
+.receipts-root .hero-confirm p strong { color: #fff; }
+.receipts-root .hero-confirm .small { color: #bdb191; font-size: 13.5px; max-width: 560px; margin: 24px auto 0; }
+
+/* confirm + download shared (legacy .stage, kept for download page) */
 .receipts-root .stage { background:var(--rc-green); color:#f4ecd9; min-height:62vh; padding:80px 0; border-bottom:5px solid var(--rc-gold); }
 .receipts-root .stage.center { text-align:center; }
 .receipts-root .stage h1 { color:#f4ecd9; font-size:42px; margin-bottom:18px; }
