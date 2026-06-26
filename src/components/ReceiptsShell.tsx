@@ -246,6 +246,8 @@ export const RECEIPTS_CSS = `
 /* footer */
 .receipts-root footer { background:var(--rc-ink); color:#bcae8e; padding:30px 0; font-size:13px; }
 .receipts-root footer .disc { font-size:12px; color:#9b8f70; line-height:1.6; max-width:900px; margin-top:10px; }
+.receipts-root footer .legal { margin-top:10px; font-size:12px; color:#9b8f70; }
+.receipts-root footer .copy { margin-top:4px; font-size:12px; color:#9b8f70; }
 .receipts-root footer a { color:var(--rc-gold); }
 
 @media (max-width:840px) {
