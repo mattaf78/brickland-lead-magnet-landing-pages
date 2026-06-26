@@ -54,12 +54,18 @@ function ReceiptsForm({ idSuffix }: { idSuffix: string }) {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [state, setState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (state === "submitting") return;
+    if (!consent) {
+      setState("error");
+      setErrorMsg("Please tick the consent box to continue.");
+      return;
+    }
     setState("submitting");
     setErrorMsg(null);
     try {
@@ -106,6 +112,32 @@ function ReceiptsForm({ idSuffix }: { idSuffix: string }) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      <label
+        htmlFor={`consent-${idSuffix}`}
+        style={{
+          display: "flex",
+          gap: 10,
+          alignItems: "flex-start",
+          fontSize: 12.5,
+          color: "#4a463c",
+          lineHeight: 1.45,
+          margin: "4px 0 12px",
+          textAlign: "left",
+          cursor: "pointer",
+        }}
+      >
+        <input
+          type="checkbox"
+          id={`consent-${idSuffix}`}
+          required
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          style={{ width: 16, height: 16, marginTop: 2, flex: "none", accentColor: "#c0432a" }}
+        />
+        <span>
+          I agree to receive the free guide and occasional emails from Vital Living Ltd / The Wellness Brickdown, including educational content, free resources, updates, and promotional emails about courses, programmes, apps, services and related offers. I understand I can unsubscribe at any time.
+        </span>
+      </label>
       <button className="btn" type="submit" disabled={state === "submitting"}>
         {state === "submitting" ? "Sending…" : "Send me The Receipts →"}
       </button>
@@ -159,7 +191,9 @@ function TheReceiptsIndex() {
               <h3>Get The Receipts — free</h3>
               <p className="small">A 12-page evidence guide. Every figure sourced. Straight to your inbox.</p>
               <ReceiptsForm idSuffix="hero" />
-              <div className="trust">No spam. Unsubscribe anytime. Education, not medical advice.</div>
+              <div className="trust">
+                No spam. Unsubscribe anytime. Education, not medical advice. <a href="/privacy">See our Privacy Policy.</a>
+              </div>
             </div>
           </div>
         </div>
@@ -258,7 +292,9 @@ function TheReceiptsIndex() {
           <p>Get the free 12-page report and see the receipts for yourself.</p>
           <div className="form">
             <ReceiptsForm idSuffix="final" />
-            <div className="trust">No spam. Unsubscribe anytime. Education, not medical advice.</div>
+            <div className="trust">
+              No spam. Unsubscribe anytime. Education, not medical advice. <a href="/privacy">See our Privacy Policy.</a>
+            </div>
           </div>
         </div>
       </section>
@@ -268,6 +304,12 @@ function TheReceiptsIndex() {
           <strong style={{ color: "#e8dcbf" }}>THE WELLNESS BRICKDOWN</strong> · Follow the evidence.
           <p className="disc">
             This report describes specific documented cases and a measurable pattern. It is not a claim that all nutrition science is bought, or that any named company changed any specific government policy. Companies named appear only in connection with documented, published facts. Brick-built images are a fictional dramatisation. Education and commentary only — not medical advice; consult a qualified professional before major health changes.
+          </p>
+          <p className="disc" style={{ marginTop: 14 }}>
+            <a href="/privacy">Privacy Policy</a> · <a href="/yourvoice">Your Voice</a> · <a href="mailto:info@vitalliving.co.uk">Contact</a>
+          </p>
+          <p className="disc" style={{ marginTop: 6 }}>
+            © 2026 The Wellness Brickdown · Vital Living Ltd · We will never sell, rent or share your details. Unsubscribe anytime.
           </p>
         </div>
       </footer>
