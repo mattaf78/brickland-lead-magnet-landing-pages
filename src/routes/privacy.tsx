@@ -82,7 +82,7 @@ function Privacy() {
         <Section heading="3. Why We Collect It">
           <p>We collect your name and email address in order to:</p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li>Deliver the free BrickBrief guide you requested (campaign LP001TheyKnew)</li>
+            <li>Deliver the free field guide you requested</li>
             <li>Send you educational email content related to health, food, energy and behaviour</li>
             <li>
               Occasionally promote relevant courses, programmes, apps and other information-based
@@ -185,7 +185,33 @@ function Privacy() {
           </p>
         </Section>
 
-        <Section heading="9. Contact">
+        <Section heading="9. Your Rights">
+          <p>
+            Under the UK GDPR and the Data Protection Act 2018 you have the right to access the
+            personal data we hold about you, to have it corrected or erased, to restrict or object
+            to its processing, to data portability, and to withdraw consent at any time. To exercise
+            any of these rights, contact us at{" "}
+            <a
+              href="mailto:info@vitalliving.co.uk"
+              className="underline underline-offset-2 hover:text-foreground transition-colors"
+            >
+              info@vitalliving.co.uk
+            </a>
+            . You also have the right to lodge a complaint with the UK's supervisory authority, the
+            Information Commissioner's Office (ICO), at{" "}
+            <a
+              href="https://www.ico.org.uk"
+              className="underline underline-offset-2 hover:text-foreground transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ico.org.uk
+            </a>
+            .
+          </p>
+        </Section>
+
+        <Section heading="10. Contact">
           <p>
             If you have any questions about this privacy policy or how we handle your personal data,
             please contact:
@@ -207,7 +233,7 @@ function Privacy() {
           </address>
         </Section>
 
-        <Section heading="10. Medical Disclaimer">
+        <Section heading="11. Medical Disclaimer">
           <p>
             All content produced by The Wellness Brickdown — including field guides, landing pages
             and associated materials — is provided for educational and general commentary purposes
