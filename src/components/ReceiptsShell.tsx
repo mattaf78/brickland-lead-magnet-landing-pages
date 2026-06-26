@@ -10,16 +10,18 @@ import type { ReactNode } from "react";
 export function ReceiptsShell({
   children,
   navLabel,
+  showFooterLegal = false,
 }: {
   children: ReactNode;
   navLabel: string;
+  showFooterLegal?: boolean;
 }) {
   return (
     <div className="receipts-root">
       <style dangerouslySetInnerHTML={{ __html: RECEIPTS_CSS }} />
       <ReceiptsTopBar navLabel={navLabel} />
       {children}
-      <ReceiptsFooter />
+      <ReceiptsFooter showFooterLegal={showFooterLegal} />
     </div>
   );
 }
@@ -45,11 +47,18 @@ function ReceiptsTopBar({ navLabel }: { navLabel: string }) {
   );
 }
 
-function ReceiptsFooter() {
+function ReceiptsFooter({ showFooterLegal }: { showFooterLegal?: boolean }) {
   return (
     <footer>
       <div className="wrap">
         <strong style={{ color: "#e8dcbf" }}>THE WELLNESS BRICKDOWN</strong> · Follow the evidence.
+        {showFooterLegal && (
+          <p className="legal">
+            <a href="/privacy">Privacy Policy</a> ·{" "}
+            <a href="mailto:info@vitalliving.co.uk">Contact</a>
+          </p>
+        )}
+        {showFooterLegal && <p className="copy">© 2026 The Wellness Brickdown · Vital Living Ltd</p>}
         <p className="disc">
           Education and commentary only — not medical advice; consult a qualified professional before major health changes.
         </p>
