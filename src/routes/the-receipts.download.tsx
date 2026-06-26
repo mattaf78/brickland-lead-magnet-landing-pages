@@ -28,7 +28,7 @@ export const Route = createFileRoute("/the-receipts/download")({
 
 function DownloadPage() {
   return (
-    <ReceiptsShell navLabel="Your download">
+    <ReceiptsShell navLabel="Your download" showFooterLegal>
       <header className="hero-download">
         <div className="wrap">
           <div className="plate dl-plate">

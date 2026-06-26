@@ -24,7 +24,7 @@ export const Route = createFileRoute("/the-receipts/confirm")({
 
 function ConfirmPage() {
   return (
-    <ReceiptsShell navLabel="One quick step">
+    <ReceiptsShell navLabel="One quick step" showFooterLegal>
       <header className="hero hero-confirm">
         <div className="wrap">
           <div className="badge" aria-hidden="true">

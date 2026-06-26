@@ -10,16 +10,18 @@ import type { ReactNode } from "react";
 export function ReceiptsShell({
   children,
   navLabel,
+  showFooterLegal = false,
 }: {
   children: ReactNode;
   navLabel: string;
+  showFooterLegal?: boolean;
 }) {
   return (
     <div className="receipts-root">
       <style dangerouslySetInnerHTML={{ __html: RECEIPTS_CSS }} />
       <ReceiptsTopBar navLabel={navLabel} />
       {children}
-      <ReceiptsFooter />
+      <ReceiptsFooter showFooterLegal={showFooterLegal} />
     </div>
   );
 }
@@ -45,11 +47,18 @@ function ReceiptsTopBar({ navLabel }: { navLabel: string }) {
   );
 }
 
-function ReceiptsFooter() {
+function ReceiptsFooter({ showFooterLegal }: { showFooterLegal?: boolean }) {
   return (
     <footer>
       <div className="wrap">
         <strong style={{ color: "#e8dcbf" }}>THE WELLNESS BRICKDOWN</strong> · Follow the evidence.
+        {showFooterLegal && (
+          <p className="legal">
+            <a href="/privacy">Privacy Policy</a> ·{" "}
+            <a href="mailto:info@vitalliving.co.uk">Contact</a>
+          </p>
+        )}
+        {showFooterLegal && <p className="copy">© 2026 The Wellness Brickdown · Vital Living Ltd</p>}
         <p className="disc">
           Education and commentary only — not medical advice; consult a qualified professional before major health changes.
         </p>
@@ -237,6 +246,8 @@ export const RECEIPTS_CSS = `
 /* footer */
 .receipts-root footer { background:var(--rc-ink); color:#bcae8e; padding:30px 0; font-size:13px; }
 .receipts-root footer .disc { font-size:12px; color:#9b8f70; line-height:1.6; max-width:900px; margin-top:10px; }
+.receipts-root footer .legal { margin-top:10px; font-size:12px; color:#9b8f70; }
+.receipts-root footer .copy { margin-top:4px; font-size:12px; color:#9b8f70; }
 .receipts-root footer a { color:var(--rc-gold); }
 
 @media (max-width:840px) {
