@@ -191,7 +191,9 @@ function TheReceiptsIndex() {
               <h3>Get The Receipts — free</h3>
               <p className="small">A 12-page evidence guide. Every figure sourced. Straight to your inbox.</p>
               <ReceiptsForm idSuffix="hero" />
-              <div className="trust">No spam. Unsubscribe anytime. Education, not medical advice.</div>
+              <div className="trust">
+                No spam. Unsubscribe anytime. Education, not medical advice. <a href="/privacy">See our Privacy Policy.</a>
+              </div>
             </div>
           </div>
         </div>
@@ -290,7 +292,9 @@ function TheReceiptsIndex() {
           <p>Get the free 12-page report and see the receipts for yourself.</p>
           <div className="form">
             <ReceiptsForm idSuffix="final" />
-            <div className="trust">No spam. Unsubscribe anytime. Education, not medical advice.</div>
+            <div className="trust">
+              No spam. Unsubscribe anytime. Education, not medical advice. <a href="/privacy">See our Privacy Policy.</a>
+            </div>
           </div>
         </div>
       </section>
